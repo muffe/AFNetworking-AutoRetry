@@ -136,7 +136,14 @@ SYNTHESIZE_ASC_OBJ(__retryDelayCalcBlock, setRetryDelayCalcBlock);
                                                                            autoRetryOf:retriesRemainingCount - 1
                                                                          retryInterval:intervalInSeconds];
         void (^addRetryOperation)() = ^{
-            [self.operationQueue addOperation:retryOperation];
+            if(self.userSuppliedOperationQueue)
+            {
+                [self.userSuppliedOperationQueue addOperation:retryOperation];
+            }
+            else
+            {
+                [self.operationQueue addOperation:retryOperation];
+            }
         };
         RetryDelayCalcBlock delayCalc = self.retryDelayCalcBlock;
         int intervalToWait = delayCalc(originalRetryCount, retriesRemainingCount, intervalInSeconds);
@@ -210,7 +217,15 @@ SYNTHESIZE_ASC_OBJ(__retryDelayCalcBlock, setRetryDelayCalcBlock);
                    retryInterval:(int)intervalInSeconds {
     NSMutableURLRequest *request = [self.requestSerializer requestWithMethod:@"POST" URLString:[[NSURL URLWithString:URLString relativeToURL:self.baseURL] absoluteString] parameters:parameters error:nil];
     AFHTTPRequestOperation *operation = [self HTTPRequestOperationWithRequest:request success:success failure:failure autoRetryOf:timesToRetry retryInterval:intervalInSeconds];
-    [self.operationQueue addOperation:operation];
+    
+    if(self.userSuppliedOperationQueue)
+    {
+        [self.userSuppliedOperationQueue addOperation:operation];
+    }
+    else
+    {
+        [self.operationQueue addOperation:operation];
+    }
     
     return operation;
 }
@@ -224,7 +239,15 @@ SYNTHESIZE_ASC_OBJ(__retryDelayCalcBlock, setRetryDelayCalcBlock);
                   retryInterval:(int)intervalInSeconds {
     NSMutableURLRequest *request = [self.requestSerializer requestWithMethod:@"GET" URLString:[[NSURL URLWithString:URLString relativeToURL:self.baseURL] absoluteString] parameters:parameters error:nil];
     AFHTTPRequestOperation *operation = [self HTTPRequestOperationWithRequest:request success:success failure:failure autoRetryOf:timesToRetry retryInterval:intervalInSeconds];
-    [self.operationQueue addOperation:operation];
+    
+    if(self.userSuppliedOperationQueue)
+    {
+        [self.userSuppliedOperationQueue addOperation:operation];
+    }
+    else
+    {
+        [self.operationQueue addOperation:operation];
+    }
     
     return operation;
 }
@@ -241,7 +264,15 @@ SYNTHESIZE_ASC_OBJ(__retryDelayCalcBlock, setRetryDelayCalcBlock);
             success(requestOperation);
         }
     }                                                                 failure:failure autoRetryOf:timesToRetry retryInterval:intervalInSeconds];
-    [self.operationQueue addOperation:operation];
+    
+    if(self.userSuppliedOperationQueue)
+    {
+        [self.userSuppliedOperationQueue addOperation:operation];
+    }
+    else
+    {
+        [self.operationQueue addOperation:operation];
+    }
     
     return operation;
 }
@@ -255,7 +286,15 @@ SYNTHESIZE_ASC_OBJ(__retryDelayCalcBlock, setRetryDelayCalcBlock);
                    retryInterval:(int)intervalInSeconds {
     NSMutableURLRequest *request = [self.requestSerializer multipartFormRequestWithMethod:@"POST" URLString:[[NSURL URLWithString:URLString relativeToURL:self.baseURL] absoluteString] parameters:parameters constructingBodyWithBlock:block error:nil];
     AFHTTPRequestOperation *operation = [self HTTPRequestOperationWithRequest:request success:success failure:failure autoRetryOf:timesToRetry retryInterval:intervalInSeconds];
-    [self.operationQueue addOperation:operation];
+    
+    if(self.userSuppliedOperationQueue)
+    {
+        [self.userSuppliedOperationQueue addOperation:operation];
+    }
+    else
+    {
+        [self.operationQueue addOperation:operation];
+    }
     
     return operation;
 }
@@ -268,7 +307,15 @@ SYNTHESIZE_ASC_OBJ(__retryDelayCalcBlock, setRetryDelayCalcBlock);
                   retryInterval:(int)intervalInSeconds {
     NSMutableURLRequest *request = [self.requestSerializer requestWithMethod:@"PUT" URLString:[[NSURL URLWithString:URLString relativeToURL:self.baseURL] absoluteString] parameters:parameters error:nil];
     AFHTTPRequestOperation *operation = [self HTTPRequestOperationWithRequest:request success:success failure:failure autoRetryOf:timesToRetry retryInterval:intervalInSeconds];
-    [self.operationQueue addOperation:operation];
+    
+    if(self.userSuppliedOperationQueue)
+    {
+        [self.userSuppliedOperationQueue addOperation:operation];
+    }
+    else
+    {
+        [self.operationQueue addOperation:operation];
+    }
     
     return operation;
 }
@@ -281,7 +328,15 @@ SYNTHESIZE_ASC_OBJ(__retryDelayCalcBlock, setRetryDelayCalcBlock);
                     retryInterval:(int)intervalInSeconds {
     NSMutableURLRequest *request = [self.requestSerializer requestWithMethod:@"PATCH" URLString:[[NSURL URLWithString:URLString relativeToURL:self.baseURL] absoluteString] parameters:parameters error:nil];
     AFHTTPRequestOperation *operation = [self HTTPRequestOperationWithRequest:request success:success failure:failure autoRetryOf:timesToRetry retryInterval:intervalInSeconds];
-    [self.operationQueue addOperation:operation];
+    
+    if(self.userSuppliedOperationQueue)
+    {
+        [self.userSuppliedOperationQueue addOperation:operation];
+    }
+    else
+    {
+        [self.operationQueue addOperation:operation];
+    }
     
     return operation;
 }
@@ -294,7 +349,15 @@ SYNTHESIZE_ASC_OBJ(__retryDelayCalcBlock, setRetryDelayCalcBlock);
                      retryInterval:(int)intervalInSeconds {
     NSMutableURLRequest *request = [self.requestSerializer requestWithMethod:@"DELETE" URLString:[[NSURL URLWithString:URLString relativeToURL:self.baseURL] absoluteString] parameters:parameters error:nil];
     AFHTTPRequestOperation *operation = [self HTTPRequestOperationWithRequest:request success:success failure:failure autoRetryOf:timesToRetry retryInterval:intervalInSeconds];
-    [self.operationQueue addOperation:operation];
+    
+    if(self.userSuppliedOperationQueue)
+    {
+        [self.userSuppliedOperationQueue addOperation:operation];
+    }
+    else
+    {
+        [self.operationQueue addOperation:operation];
+    }
     
     return operation;
 }

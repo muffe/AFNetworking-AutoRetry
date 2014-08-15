@@ -119,6 +119,7 @@ typedef int (^RetryDelayCalcBlock)(int, int, int); // int totalRetriesAllowed, i
 
 @property (strong) id operationsDict;
 @property (copy) id retryDelayCalcBlock;
+@property (weak) NSOperationQueue *userSuppliedOperationQueue;
 
 @end
 
