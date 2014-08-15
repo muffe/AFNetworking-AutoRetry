@@ -7,6 +7,7 @@
 #pragma clang diagnostic push
 #pragma ide diagnostic ignored "OCUnusedMethodInspection"
 
+static void * OperationQueuePropertyKey = &OperationQueuePropertyKey;
 
 @implementation AFHTTPRequestOperationManager (AutoRetry)
 
@@ -360,6 +361,16 @@ SYNTHESIZE_ASC_OBJ(__retryDelayCalcBlock, setRetryDelayCalcBlock);
     }
     
     return operation;
+}
+
+- (NSOperationQueue *)userSuppliedOperationQueue
+{
+    return objc_getAssociatedObject(self, OperationQueuePropertyKey);
+}
+
+- (void)setUserSuppliedOperationQueue:(NSOperationQueue *)userSuppliedOperationQueue
+{
+    objc_setAssociatedObject(self, OperationQueuePropertyKey, userSuppliedOperationQueue, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
 }
 
 @end
