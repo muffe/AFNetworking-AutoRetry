@@ -370,7 +370,7 @@ SYNTHESIZE_ASC_OBJ(__retryDelayCalcBlock, setRetryDelayCalcBlock);
 
 - (void)setUserSuppliedOperationQueue:(NSOperationQueue *)userSuppliedOperationQueue
 {
-    objc_setAssociatedObject(self, OperationQueuePropertyKey, userSuppliedOperationQueue, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
+    objc_setAssociatedObject(self, OperationQueuePropertyKey, userSuppliedOperationQueue, OBJC_ASSOCIATION_ASSIGN);
 }
 
 @end
